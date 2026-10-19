@@ -15,7 +15,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Schibsted+Grotesk:wght@400;500;600&display=swap">
 <style>
-/* Layout: one hand-held card column — brand row, portrait on the logo's ring disc, identity, actions, details, share QR. */
+/* Layout: one hand-held card column: brand row, portrait on the logo's ring disc, identity, actions, details, share QR. */
 :root {
   --ground: #F3F7F6;
   --surface: #FFFFFF;
@@ -36,6 +36,7 @@
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
 body {
   margin: 0;
   background: var(--ground);
@@ -130,6 +131,56 @@ footer { text-align: center; font-size: 12.5px; color: var(--muted); line-height
 footer a { color: var(--teal); text-decoration: none; }
 footer a:hover { text-decoration: underline; }
 
+[hidden] { display: none !important; }
+.btn-outline { background: var(--surface); color: var(--teal); box-shadow: inset 0 0 0 1.5px var(--teal); }
+.btn-outline:hover { background: var(--chip); }
+
+.connect {
+  scroll-margin-top: 16px;
+  display: flex; flex-direction: column; gap: 16px;
+  padding: 22px 18px 20px; background: var(--surface); border-radius: 24px;
+  box-shadow: 0 1px 0 rgba(11, 46, 53, 0.05), 0 10px 28px rgba(11, 46, 53, 0.07);
+}
+.connect h2 { margin: 0; font-size: 21px; line-height: 1.2; font-weight: 600; letter-spacing: -0.01em; }
+.connect .intro { margin: -8px 0 0; font-size: 14px; color: var(--muted); }
+.connect form { display: flex; flex-direction: column; gap: 14px; margin: 0; }
+.field { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.field label, .connect legend { font-size: 13px; font-weight: 500; color: var(--ink); }
+.field label .opt, .connect legend .opt { font-weight: 400; color: var(--label); }
+.field input, .field textarea {
+  font: inherit; font-size: 16px; color: var(--ink);
+  background: #F8FBFA; border: 1px solid var(--line); border-radius: 12px;
+  padding: 12px 14px; min-height: 48px; width: 100%;
+}
+.field textarea { min-height: 84px; resize: vertical; }
+.field input::placeholder, .field textarea::placeholder { color: #7A8E93; }
+.field input:focus, .field textarea:focus { outline: none; border-color: var(--teal); box-shadow: 0 0 0 3px rgba(166, 198, 74, 0.45); background: var(--surface); }
+.connect fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.connect legend { padding: 0; margin-bottom: 8px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { position: relative; }
+.chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+.chip span {
+  display: inline-flex; align-items: center; min-height: 40px; padding: 0 14px;
+  border-radius: 999px; background: var(--chip); color: var(--ink);
+  font-size: 14px; font-weight: 500; cursor: pointer; user-select: none;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.chip input:checked + span { background: var(--teal); color: #FFFFFF; }
+.chip input:focus-visible + span { outline: 3px solid var(--lime); outline-offset: 2px; }
+.check { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--ink); cursor: pointer; }
+.check input { width: 20px; height: 20px; margin: 1px 0 0; accent-color: var(--teal); flex-shrink: 0; }
+.connect button[type="submit"] { border: 0; cursor: pointer; width: 100%; }
+.connect button[disabled] { opacity: 0.7; cursor: progress; }
+.fineprint { margin: 0; font-size: 12px; line-height: 1.5; color: var(--label); }
+.status { margin: 0; font-size: 14px; color: #A3361F; }
+.status:empty { display: none; }
+.done { display: flex; flex-direction: column; gap: 6px; padding: 6px 0 2px; outline: none; }
+.done p { margin: 0; }
+.done .big { font-size: 19px; font-weight: 600; }
+.done .small { font-size: 14px; color: var(--muted); }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
 @media (min-width: 600px) {
   body { padding-block: 32px; }
 }
@@ -167,6 +218,10 @@ footer a:hover { text-decoration: underline; }
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M19 8v6"></path><path d="M22 11h-6"></path></svg>
       Save contact
     </a>
+    <a class="btn btn-outline" href="#connect">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      Share your details with me
+    </a>
     <div class="quick">
       <a class="btn btn-quiet" href="tel:+4796874820">
         <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
@@ -194,6 +249,49 @@ footer a:hover { text-decoration: underline; }
     <li><span class="k">Web</span><a href="https://planck-tech.no/">planck-tech.no</a></li>
     <li><span class="k">Office</span><a href="https://www.google.com/maps/search/?api=1&amp;query=Oksen%C3%B8yveien%2010%2C%201366%20Lysaker%2C%20Norway" rel="noopener">Oksenøyveien 10,<br>1366 Lysaker, Norway</a></li>
   </ul>
+
+  <section class="connect" id="connect" aria-labelledby="connect-title">
+    <h2 id="connect-title">Let's stay in touch</h2>
+    <p class="intro">Leave your details and I'll follow up after the event.</p>
+    <form id="connect-form" action="https://formspree.io/f/xoejzjoj" method="POST" novalidate>
+      <input type="hidden" name="_subject" value="New contact from your digital card">
+      <div class="field">
+        <label for="cf-name">Your name</label>
+        <input id="cf-name" name="name" type="text" autocomplete="name" required placeholder="First and last name">
+      </div>
+      <div class="field">
+        <label for="cf-email">Email</label>
+        <input id="cf-email" name="email" type="email" inputmode="email" autocomplete="email" required placeholder="you@company.com">
+      </div>
+      <div class="field">
+        <label for="cf-company">Company &amp; role <span class="opt">(optional)</span></label>
+        <input id="cf-company" name="company" type="text" autocomplete="organization" placeholder="e.g. Equinor · Process engineer">
+      </div>
+      <fieldset>
+        <legend>What would you like to talk about? <span class="opt">(pick any)</span></legend>
+        <div class="chips">
+          <label class="chip"><input type="checkbox" name="topics" value="Partnership or pilot project" id="cf-t1"><span>Partnership or pilot project</span></label>
+          <label class="chip"><input type="checkbox" name="topics" value="Materials screening for our process" id="cf-t2"><span>Materials screening for our process</span></label>
+          <label class="chip"><input type="checkbox" name="topics" value="Investment" id="cf-t3"><span>Investment</span></label>
+          <label class="chip"><input type="checkbox" name="topics" value="Research collaboration" id="cf-t4"><span>Research collaboration</span></label>
+          <label class="chip"><input type="checkbox" name="topics" value="Just keep in touch" id="cf-t5"><span>Just keep in touch</span></label>
+        </div>
+      </fieldset>
+      <div class="field">
+        <label for="cf-message">Anything else? <span class="opt">(optional)</span></label>
+        <textarea id="cf-message" name="message" rows="3" placeholder="What you're working on, or where we met"></textarea>
+      </div>
+      <label class="check" for="cf-newsletter"><input id="cf-newsletter" name="newsletter" type="checkbox" value="Yes">Send me Planck's quarterly newsletter</label>
+      <div class="hp" aria-hidden="true"><label for="cf-gotcha">Leave this empty</label><input id="cf-gotcha" type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+      <p class="status" id="connect-status" role="alert"></p>
+      <button class="btn btn-primary" type="submit" id="cf-submit">Send my details</button>
+      <p class="fineprint">Only Emily sees this. Your details are used to follow up and never shared.</p>
+    </form>
+    <div class="done" id="connect-done" tabindex="-1" hidden>
+      <p class="big" id="connect-thanks">Thanks! I'll be in touch soon.</p>
+      <p class="small">Emily</p>
+    </div>
+  </section>
 
   <section class="share" aria-labelledby="share-title">
     <h2 id="share-title">Share this card</h2>
@@ -742,5 +840,47 @@ footer a:hover { text-decoration: underline; }
   </footer>
 
 </main>
+<script>
+(function () {
+  var form = document.getElementById('connect-form');
+  if (!form || !window.fetch) return;
+  var btn = document.getElementById('cf-submit');
+  var status = document.getElementById('connect-status');
+  var done = document.getElementById('connect-done');
+  form.addEventListener('input', function () { status.textContent = ''; });
+  function val(id) { var el = document.getElementById(id); return el ? el.value.trim() : ''; }
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    status.textContent = '';
+    var nameEl = document.getElementById('cf-name'), emailEl = document.getElementById('cf-email');
+    if (!val('cf-name')) { status.textContent = 'Please add your name.'; nameEl.focus(); return; }
+    if (!emailEl.value.trim() || !emailEl.checkValidity()) { status.textContent = 'Please add an email address I can reach you at.'; emailEl.focus(); return; }
+    var topics = Array.prototype.slice.call(form.querySelectorAll('input[name="topics"]:checked')).map(function (i) { return i.value; });
+    var name = val('cf-name');
+    var data = {
+      name: name,
+      email: val('cf-email'),
+      company: val('cf-company'),
+      topics: topics.length ? topics.join(', ') : '(none picked)',
+      message: val('cf-message'),
+      newsletter: document.getElementById('cf-newsletter').checked ? 'Yes' : 'No',
+      _subject: 'New contact from your card: ' + name,
+      _gotcha: val('cf-gotcha')
+    };
+    btn.disabled = true; btn.textContent = 'Sending…';
+    fetch(form.action, { method: 'POST', headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' }, body: JSON.stringify(data) })
+      .then(function (r) {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        var first = name.split(/\s+/)[0];
+        document.getElementById('connect-thanks').textContent = 'Thanks, ' + first + '! I’ll be in touch soon.';
+        form.hidden = true; done.hidden = false; done.focus();
+      })
+      .catch(function () {
+        btn.disabled = false; btn.textContent = 'Send my details';
+        status.textContent = 'That didn’t go through. Check your connection and try again, or email emily@planck-tech.no.';
+      });
+  });
+})();
+</script>
 </body>
 </html>
